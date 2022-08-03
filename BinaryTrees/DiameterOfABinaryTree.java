@@ -1,5 +1,4 @@
 public class DiameterOfABinaryTree{
-
   public static int height(BinaryTreeNode<Integer>root){
         if(root==null)return 0;
         else{
