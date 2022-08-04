@@ -26,16 +26,35 @@ public class StackUsingArray {
         }
         return data[top];
     }
+//    public void push(int element)throws StackFullException{
+//        if(size()==data.length)
+//        {
+//            StackFullException e =new StackFullException();
+//            throw e;
+//        }
+//            top++;
+//            data[top]=element;
+//
+//    }
     public void push(int element)throws StackFullException{
         if(size()==data.length)
         {
-            StackFullException e =new StackFullException();
-            throw e;
+           doubleCapacity();
         }
-            top++;
-            data[top]=element;
+        top++;
+        data[top]=element;
 
     }
+    private void doubleCapacity(){
+        int[] temp=data;
+        data=new int[data.length*2];
+        for(int i=0;i<=top;i++){
+            data[i]=temp[i];
+        }
+
+    }
+
+
     public int pop() throws  StackEmptyException{
         if(top==-1){
             StackEmptyException e=new StackEmptyException();
