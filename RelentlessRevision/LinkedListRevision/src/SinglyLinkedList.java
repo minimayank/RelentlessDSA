@@ -108,6 +108,91 @@ public class SinglyLinkedList {
         }
     }
 
+
+    public static Node<Integer>insertAtBeginning(Node<Integer>head){
+        Scanner sc=new Scanner(System.in);
+        int data=sc.nextInt();
+        Node<Integer>newNode=new Node<Integer>(data);
+        if(head==null){
+            head=newNode;
+            return head;
+        }
+        else{
+            newNode.next=head;
+            head=newNode;
+            return head;
+        }
+
+
+    }
+
+    public static Node<Integer>insertAtTheEnd(Node<Integer>head){
+       Scanner sc=new Scanner(System.in);
+       int data=sc.nextInt();
+       Node<Integer>newNode=new Node<Integer>(data);
+
+        if(head==null){
+            head=newNode;
+            return head;
+        }
+        else{
+            Node<Integer>temp=head;
+            while(temp.next!=null)temp=temp.next;
+            temp.next=newNode;
+            temp=newNode;
+            //temp=temp.next;
+
+            return head;
+        }
+    }
+    public static Node<Integer> deleteFirst(Node<Integer>head){
+        if(head==null||head.next==null)return null;
+        else{
+            head=head.next;
+            return head;
+        }
+    }
+    public static Node<Integer>deleteAtEnd(Node<Integer>head){
+        if(head==null||head.next==null)return null;
+        else{
+            Node<Integer>temp=head;
+            while(temp.next.next!=null){
+                temp=temp.next;
+            }
+            temp.next=null;
+            return head;
+        }
+    }
+    public static int length(Node<Integer>head){
+        if(head==null)return 0;
+        else{
+            return 1+length(head.next);
+        }
+
+    }
+    public static Node<Integer>deletetAPos(Node<Integer>head,int pos){
+        // 1_>2_>3_>4
+        //POS=2 , 1_>2_>4
+        if(head==null)return null;
+        if(pos>=length(head)){
+            System.out.println("Hey the position is invalid");
+            return head;
+        }
+        else{
+            Node<Integer>prev=head;
+
+            Node<Integer>next;
+            for(int i=0;i<pos-1;i++){
+                prev=prev.next;
+            }
+
+            next=prev.next.next;
+            prev.next=next;
+
+            return head;
+        }
+
+    }
     public static void main(String[] args) {
 //         Node head=takeInput();
 //         printLinkedList(head);
@@ -115,9 +200,16 @@ public class SinglyLinkedList {
 //        System.out.println();
 //         printLinkedList(revHead);
 //
+//        Node<Integer>head=takeInput();
+//        System.out.println(midPoint(head));
+//          Node<Integer>head=takeInput();
+//          Node<Integer>newHead=insertAtTheEnd(head);
+//          printLinkedList(newHead);
+//            Node<Integer>head=takeInput();
+//            head=deleteAtEnd(head);
+//            printLinkedList(head);
         Node<Integer>head=takeInput();
-        System.out.println(midPoint(head));
-
-
+        head=deletetAPos(head,2);
+        printLinkedList(head);
     }
 }
