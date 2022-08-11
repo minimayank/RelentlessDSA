@@ -12,8 +12,9 @@ public class GenericTree {
       return root;
     }
 
+static Scanner sc=new Scanner(System.in);
    public static TreeNode<Integer> takeInput(){
-        Scanner sc=new Scanner(System.in);
+
        System.out.println("Enter the data of the root.");
         int data=sc.nextInt();
         TreeNode<Integer>root=new TreeNode<Integer>(data);
@@ -27,8 +28,21 @@ public class GenericTree {
        return root;
     }
 
+    public static void print(TreeNode<Integer>root){
+        String s=root.data+" : ";
+        for(int i=0;i<root.children.size();i++){
+            s=s+root.children.get(i).data+" , ";
+        }
+        System.out.println(s);
+        for(int i=0;i<root.children.size();i++) {
+            print(root.children.get(i));
+        }
+
+    }
+
     public static void main(String[] args) {
          TreeNode<Integer>root=takeInput();
+         print(root);
 
     }
 
